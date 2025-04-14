@@ -166,7 +166,7 @@ def denoise_dfb(image_path, noise_sigma=15, orientations=16, filter_size=11):
 if __name__ == "__main__":
     try:
         # Thay đổi đường dẫn chính xác đến ảnh của bạn
-        denoise_dfb("./images/gauss.jpg", orientations=16, filter_size=11)  
+        denoise_dfb("./images/image.png", orientations=16, filter_size=11)  
     except Exception as e:
         print(f"\n[ERROR] Đã xảy ra lỗi: {str(e)}")
         print("[DEBUG] Hướng dẫn khắc phục:")
