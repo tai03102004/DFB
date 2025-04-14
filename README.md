@@ -1,8 +1,11 @@
-Cách 1: Dùng Virtual Environment (Khuyến nghị)
-Đây là cách an toàn và phổ biến nhất:
-
+# 1. Tạo môi trường ảo
 python3 -m venv venv
-source venv/bin/activate
-pip install numpy opencv-python pywavelets scikit-image torch
 
-pip install --break-system-packages numpy opencv-python pywavelets scikit-image torch matplotlib
+# 2. Kích hoạt môi trường ảo
+source venv/bin/activate
+
+# 3. Cài đặt các thư viện cần thiết
+pip install numpy opencv-python pywavelets scikit-image torch matplotlib
+
+# Chạy chương trình
+python DFB.py
