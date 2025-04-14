@@ -5,7 +5,7 @@ python3 -m venv venv
 source venv/bin/activate
 
 # 3. Cài đặt các thư viện cần thiết
-pip install numpy opencv-python pywavelets scikit-image torch matplotlib
+pip install numpy opencv-python pywavelets scikit-image torch matplotlib pandas
 
 # Chạy chương trình
 python DFB.py
