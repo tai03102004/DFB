@@ -139,11 +139,26 @@ def directional_filter_bank(image, num_bands=8):
     return subbands
 
 def soft_threshold(x, threshold):
-    """
-    Apply soft thresholding as defined in the paper:
-    qs(x, λ) = sgn(x)(|x| - λ)+
-    """
     return np.sign(x) * np.maximum(np.abs(x) - threshold, 0)
+
+def sure_threshold(coeffs, sigma):
+    x = coeffs.ravel()
+    n = len(x)
+    absx = np.abs(x)
+    sorted_absx = np.sort(absx)
+
+    risks = []
+    for t in sorted_absx:
+        risk = (n * sigma**2 +
+                np.sum(np.minimum(absx**2, t**2)) -
+                2 * sigma**2 * np.sum(absx <= t))
+        risks.append(risk)
+
+    min_idx = np.argmin(risks)
+    return sorted_absx[min_idx]
+
+def visushrink_threshold(sigma, n):
+    return sigma * np.sqrt(2 * np.log(n))
 
 def estimate_noise_variance(subband):
     """
@@ -211,14 +226,11 @@ def add_gaussian_noise(image, std):
     # Clip to valid range
     return np.clip(noisy_image, 0, 255)
 
+def mse(original, noisy):
+    return np.mean((original - noisy) ** 2)
+
 def psnr(original, noisy):
-    """Calculate Peak Signal-to-Noise Ratio"""
-    mse = np.mean((original - noisy) ** 2)
-    if mse == 0:
-        return float('inf')
-    max_pixel = 255.0
-    psnr = 20 * np.log10(max_pixel / np.sqrt(mse))
-    return psnr
+    return 10 * np.log10(255**2 / mse(original, noisy))
 
 def display_comparison(original, noisy, denoised, title="Image Denoising Comparison"):
     """Display original, noisy and denoised images side by side"""
@@ -423,7 +435,7 @@ if __name__ == "__main__":
     # You can either provide an image path or let it create a test pattern
     # Example: main("path/to/your/image.jpg")
     # image_path = "./images/original.png"
-    main("./images/denoised_result.jpg")
+    main("./images/lena_clean.png")
     
     # Alternatively, you can use this command to create a test pattern
     # main()
