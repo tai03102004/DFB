@@ -238,7 +238,7 @@ def display_comparison(original, noisy, denoised, title="Image Denoising Compari
     
     plt.suptitle(title)
     plt.tight_layout()
-    plt.savefig('denoising_comparison.png')  # Save the figure
+    # plt.savefig('denoising_comparison.png')  # Save the figure
     plt.show()
 
 def visualize_directional_subbands(subbands):
@@ -255,7 +255,7 @@ def visualize_directional_subbands(subbands):
     
     plt.suptitle('Directional Subbands')
     plt.tight_layout()
-    plt.savefig('directional_subbands.png')  # Save the figure
+    # plt.savefig('directional_subbands.png')  # Save the figure
     plt.show()
 
 def load_and_prepare_image(image_path, size=512):
@@ -359,7 +359,7 @@ def compare_with_wavelet(original, noisy, noise_std):
     
     plt.suptitle('DFB vs Wavelet Denoising')
     plt.tight_layout()
-    plt.savefig('dfb_vs_wavelet.png')  # Save the figure
+    # plt.savefig('dfb_vs_wavelet.png')  # Save the figure
     plt.show()
     
     return dfb_denoised, wavelet_denoised
@@ -401,9 +401,9 @@ def main(image_path=None):
         dfb_result, wavelet_result = compare_with_wavelet(original, noisy, noise_std)
         
         # Lưu ảnh gốc, nhiễu và khử nhiễu
-        io.imsave(f'original_image_sigma_{noise_std}.png', original.astype(np.uint8))
-        io.imsave(f'noisy_image_sigma_{noise_std}.png', noisy.astype(np.uint8))
-        io.imsave(f'denoised_image_sigma_{noise_std}.png', denoised.astype(np.uint8))
+        # io.imsave(f'original_image_sigma_{noise_std}.png', original.astype(np.uint8))
+        # io.imsave(f'noisy_image_sigma_{noise_std}.png', noisy.astype(np.uint8))
+        # io.imsave(f'denoised_image_sigma_{noise_std}.png', denoised.astype(np.uint8))
         
         # For σ = 15, also visualize the directional subbands
         if noise_std == 15:
