@@ -13,8 +13,6 @@ Mã nguồn này triển khai các kỹ thuật bộ lọc định hướng cho 
   - [Hàm Thuật Toán Khử Nhiễu](#hàm-thuật-toán-khử-nhiễu)
   - [Hàm Tiện Ích](#hàm-tiện-ích)
   - [Hàm Hiển Thị](#hàm-hiển-thị)
-- [Ví Dụ](#ví-dụ)
-- [Tài Liệu Tham Khảo](#tài-liệu-tham-khảo)
 
 ## Cài Đặt
 
