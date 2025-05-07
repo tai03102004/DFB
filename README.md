@@ -19,6 +19,9 @@ Mã nguồn này triển khai các kỹ thuật bộ lọc định hướng cho 
 ### Bước 1: Tạo và kích hoạt môi trường ảo Python
 ```bash
 # Tạo môi trường ảo
+# Trên Windows
+python -m venv venv
+# Trên macOS/Linux
 python3 -m venv venv
 
 # Kích hoạt môi trường ảo
