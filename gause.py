@@ -1,26 +1,20 @@
 import cv2
-import numpy as np
-import matplotlib.pyplot as plt
+import os
+from PIL import Image
 
-# Đọc ảnh gốc (ảnh xám hoặc RGB)
-img = cv2.imread('./images/Gause.jpg', cv2.IMREAD_GRAYSCALE)  # hoặc cv2.IMREAD_COLOR nếu ảnh màu
-img = img.astype(np.float32) / 255.0  # chuẩn hóa về [0, 1]
+# Tạo thư mục nếu chưa tồn tại
+output_dir = "./images"
+os.makedirs(output_dir, exist_ok=True)
 
-# Thêm nhiễu Gaussian trắng
-mean = 0
-std_dev = 0.05  # độ lệch chuẩn của nhiễu, bạn có thể điều chỉnh
-gaussian_noise = np.random.normal(mean, std_dev, img.shape)
+# Đọc ảnh gốc (ảnh xám)
+img = cv2.imread('./images/lena_clean.png', cv2.IMREAD_GRAYSCALE)
 
-noisy_img = img + gaussian_noise
-noisy_img = np.clip(noisy_img, 0, 1)  # giới hạn lại giá trị pixel sau khi thêm nhiễu
+# Resize về kích thước 3x4 inch ở 300 DPI => 900 x 1200 pixel
+resized_img = cv2.resize(img, (900, 1200))
 
-# Hiển thị ảnh
-plt.subplot(1,2,1)
-plt.title("Original")
-plt.imshow(img, cmap='gray')
+# Chuyển sang ảnh PIL và lưu với DPI
+final_img = Image.fromarray(resized_img)
+output_path = os.path.join(output_dir, "lena_3x4_300dpi.png")
+final_img.save(output_path, dpi=(300, 300))
 
-plt.subplot(1,2,2)
-plt.title("AWGN")
-plt.imshow(noisy_img, cmap='gray')
-
-plt.show()
+print(f"Ảnh đã được lưu tại: {output_path}")
